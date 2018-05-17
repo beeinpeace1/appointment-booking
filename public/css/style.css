@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
+
+*, ::after, ::before{
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+body {
+    font-family: 'Open Sans';
+}
+
+.header {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: grid;
+    align-content: center;
+    justify-items: center;
+}
+
+.header img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    filter: brightness(30%);
+}
+
+.header .sub-text {
+    width: 60%;
+    text-align: center;
+    padding: 20px;
+    background: #0002;
+    color: rgba(240, 255, 255, 0.753);
+    border-radius: 10px;
+}
+
+.sub-text h3 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.sub-text p {
+    font-size: 1.4em;
+}
+
+.portals {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(1, 200px);
+    width: 50%;
+    grid-gap: 10px;
+    text-align: center;
+}
+
+hr {
+    display: block;
+    width: 70%;
+    height: 2px;
+    background: #fff9;
+    margin: 20px 0;
+}
+
+.portals > div {
+    background: #0003; 
+    display: grid;
+    place-items: center;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all .3s linear;
+}
+
+.portals > div a {
+    color: #fffa;
+    text-decoration: none;
+}
+
+.portals > div a::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: #fffa;
+}
+
+.portals > div:hover {
+    background: #fff3; 
+}
+
+.portals h3 {
+    font-size: 1.8em;
+}
+
+/* Admin */
+
+.admin-nav {
+    width: 100%;
+    height: 50px;
+    background: crimson;
+    display: flex;
+    justify-content: space-between;
+    place-items: center;
+}
+
+.admin-nav ul {
+    display: flex;
+    list-style: none;
+}
+
+.admin-nav ul li a{
+    padding: 0 20px; 
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.admin-nav > a {
+    color: white;
+    text-decoration: none;
+    padding: 0 20px;
+    font-size: 1.4em;
+    font-weight: 600;
+}
