@@ -1,0 +1,63 @@
+<% include ../includes/header %>
+    <h2 class="confirm-h2">Confirm Details</h2>
+    <div class="confirm-holder">
+        <div class="confirm-details">
+            <div class="confirm-doc">
+                <span>
+                    <strong>Doctor Name:</strong>
+                    <%= details.docs %>
+                </span>
+                <span>
+                    <strong>Department:</strong>
+                    <%= details.dept %>
+                </span>
+                <span>
+                    <strong>Time:</strong>
+                    <%= details.time %>
+                </span>
+                <span>
+                    <strong>Date:</strong>
+                    <%= details.date %>
+                </span>
+            </div>
+            <div class="confirm-user">
+                <span>
+                    <strong>Name:</strong>
+                    <%= details.fname %>
+                        <%= details.lname %>
+                </span>
+                <span>
+                    <strong>Phone:</strong>
+                    <%= details.phone %>
+                </span>
+                <span>
+                    <strong>Email:</strong>
+                    <%= details.email %>
+                </span>
+                <span>
+                    <strong>Address:</strong>
+                    <%= details.address %>
+                </span>
+                <span>
+                    <strong>City:</strong>
+                    <%= details.city %>
+                </span>
+                <span>
+                    <strong>Zipcode:</strong>
+                    <%= details.zip %>
+                </span>
+                <span>
+                    <strong>Note:</strong>
+                    <%= details.note %>
+                </span>
+            </div>
+        </div>
+        <div class="confirm-controls">
+            <form action="/patient/confirm">
+                <input type="submit" value="Confirm">
+            </form>
+            <a href="/patient">Cancel</a>
+        </div>
+    </div>
+
+    <% include ../includes/footer %>

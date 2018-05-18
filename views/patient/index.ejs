@@ -1,0 +1,40 @@
+<% include ../includes/header %>
+    <div class="details">
+        <form action="/patient/submit" method="post">
+            <h2>Select Department and Doctors</h2>
+            <section class="doc-section">
+                <label for="dept"> Select Department </label>
+                <select name="dept" id="dept" onchange="dept_changed(event)">
+                    <option value="null">Choose one..</option>
+                    <% for(i=0; i<locals.dept.length;i++) {%>
+                    <option value="<%=dept[i]%>">
+                        <%=dept[i]%>
+                    </option>
+                    <% } %>
+                </select>
+                <select name="docs" id="docs"></select>
+                <br>
+                <label for="time">Select Time</label>
+                <input type="time" name="time" id="time">
+                <br>
+                <label for="date">Select Date</label>
+                <input type="date" name="date" id="date">
+            </section>
+
+            <hr>
+
+            <h2>Fill in your details</h2>
+            <section class="user-section">
+                <input type="text" name="fname" placeholder="Fist Name">
+                <input type="text" name="lname" placeholder="Last Name">
+                <input type="phone" name="phone" id="phone" placeholder="123-456-789">
+                <input type="email" name="email" placeholder="Email">
+                <input type="text" name="address" id="address" placeholder="Address">
+                <input type="text" name="city" placeholder="city">
+                <input type="number" name="zip" id="zip" placeholder="560001">
+                <textarea name="note" id="note" rows="10" placeholder="comment"></textarea>
+                <input type="submit" value="Submit">
+            </section>
+        </form>
+    </div>
+    <% include ../includes/footer %>
