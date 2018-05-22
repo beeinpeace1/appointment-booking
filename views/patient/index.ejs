@@ -7,8 +7,8 @@
                 <select name="dept" id="dept" onchange="dept_changed(event)">
                     <option value="null">Choose one..</option>
                     <% for(i=0; i<locals.dept.length;i++) {%>
-                    <option value="<%=dept[i]%>">
-                        <%=dept[i]%>
+                    <option value="<%=dept[i].dept_name%>">
+                        <%=dept[i].dept_name%>
                     </option>
                     <% } %>
                 </select>

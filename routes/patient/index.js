@@ -1,6 +1,7 @@
 const express = require('express');
 const routes = express.Router();
 const nodemailer = require('nodemailer');
+const db = require('./../../helpers/db');
 
 var transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -12,29 +13,36 @@ var transporter = nodemailer.createTransport({
 
 // root route for this file is /patient
 
-var dept_doctors = {
-    "Dermatologist": ["Henry", "Katie", "Micha", "Jeol"],
-    "Cardiologist": ["Henry", "Katie", "Alex"],
-    "Pathologists": ["Jason", "Mary", "Benny", "Mala"]
-};
-
 routes.get('/', (req, res, next) => {
-    res.render('patient/index', {
-        // we need to only keys of the object. we get dept in keys so
-        dept: Object.keys(dept_doctors),
-    });
+    db.query('select * from departments', (err, data) => {
+        if(err) {
+            throw err;
+        }
+        
+        res.render('patient/index', {
+            // we need to only keys of the object. we get dept in keys so
+            dept: data,
+        });
+    })
 });
 
 routes.get('/getdocs', (req, res, next) => {
     // get Dept name as query string and access doctors from dept_doctors object and respond with docs.
-    res.json(dept_doctors[req.query.qd]);
+    db.query(`select * from doctors where dept_id in 
+    (select id from departments where dept_name="${req.query.qd}")`, (err, data) => {
+        res.json(data);
+    })
 });
 
 // executes when user fills form and submits it.
 routes.post('/submit', (req, res, next) => {
-    req.session.userdata = req.body;
+    const docName = req.body.docs.split("___")[0];
+    const docID = req.body.docs.split("___")[1];
+    req.session.userdataModified = Object.assign({}, req.body, {docsID: docID, docs: docName});
+    
+    console.log(req.session.userdataModified);
     res.render('patient/confirm', {
-        details: req.body
+        details: req.session.userdataModified
     });
 });
 
@@ -42,7 +50,7 @@ routes.post('/submit', (req, res, next) => {
 routes.get('/confirm', (req, res, next) => {
 
     // send mail to patient mail address
-    const userData = req.session.userdata;
+    const userData = req.session.userdataModified;
 
     const mailOptions = {
         from: 'Naveen N',
